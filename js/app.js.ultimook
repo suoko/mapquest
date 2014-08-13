@@ -169,30 +169,11 @@ navigator.geolocation.getCurrentPosition(function (position) {
 geolocationDisplay.innerHTML = "<strong>Latitude:</strong> " + position.coords.latitude + ", <strong>Longitude:</strong> " + position.coords.longitude;
 geolocationDisplay.style.display = "block";
 // aggiunti da me
-   /*var img = new Image();
+    var img = new Image();
     img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
-    geolocationDisplay.appendChild(img);*/
+    geolocationDisplay.appendChild(img);
 // fine aggiunti da me
-    
-        var options={
-          elt:document.getElementById('map'),        /*ID of element on the page where you want the map added*/
-          zoom:13,                                   /*initial zoom level of map*/
-          latLng:{lat:43.0059, lng:12.6000},    /*center of map in latitude/longitude*/
-          mtype:'osm'  
-	  };
 
-	window.map = new MQA.TileMap(options);
-        MQA.withModule('directions', function() {
-
-          /*Uses the MQA.TileMap.addRoute function (added to the TileMap with the directions module)
-          passing in an array of location objects as the only parameter.*/
-          map.addRoute([
-            {latLng: {lat:position.coords.latitude, lng:position.coords.longitude}},
-            {latLng: {lat:43.0059, lng:12.6000}}
-          ]);
-        });
-	
-	
 },
 function () {
 geolocationDisplay.innerHTML = "Failed to get your current location";
@@ -202,8 +183,30 @@ geolocationDisplay.style.display = "block";
 }
   
   
-// MAPQUEST MAP
+  // MAPQUEST MAP
   
+        MQA.EventUtil.observe(window, 'load', function() {
 
+        /*Create an object for options*/
+        var options={
+          elt:document.getElementById('map'),        /*ID of element on the page where you want the map added*/
+          zoom:13,                                   /*initial zoom level of map*/
+          latLng:{lat:40.735383, lng:-73.984655},    /*center of map in latitude/longitude*/
+          mtype:'osm'                                /*map type (osm)*/
+        };
+
+        /*Construct an instance of MQA.TileMap with the options object*/
+        window.map = new MQA.TileMap(options);
+
+        MQA.withModule('directions', function() {
+
+          /*Uses the MQA.TileMap.addRoute function (added to the TileMap with the directions module)
+          passing in an array of location objects as the only parameter.*/
+          map.addRoute([
+            {latLng: {lat:40.735383, lng:-73.984655}},
+            {latLng: {lat:40.765416, lng:-73.985386}}
+          ]);
+        });
+      });
   
 });

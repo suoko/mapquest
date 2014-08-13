@@ -37,9 +37,8 @@
         -->
         <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
         <script type="text/javascript" src="js/libs/l10n.js" defer></script>
-        <script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur20uy2g%2C2g%3Do5-9aya1w"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqO83W7MIBKmxX_u6FZKQkBsxDnrej1Zg"></script>
-
+            <script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur20uy2g%2C2g%3Do5-9aya1w"></script>
+     
     
     </head>
     <body>
@@ -52,13 +51,11 @@
             </form>
         </section>
         <section id="results" hidden></section>
-  <button id="geolocation" data-l10n-id="geolocation">Geolocation</button>
-  <div id="geolocation-display" data-l10n-id="golocation-values">Geolocation coords should show up here</div>
-        <div id='map' style='width:300px; height:300px;'></div>
-        <div id='map-canvas'></div>
 
+        <div id='map' style='width:480px; height:280px;'></div>
         
 
-
+  <button id="geolocation" data-l10n-id="geolocation">Geolocation</button>
+  <div id="geolocation-display" data-l10n-id="golocation-values">Geolocation coords should show up here</div>
     </body>
 </html>

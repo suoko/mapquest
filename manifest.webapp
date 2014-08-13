@@ -15,6 +15,9 @@
   },
   "type": "privileged",
   "permissions": {
+    "geolocation": {
+      "description" : "Used to locate me"
+    },
     "systemXHR": {
       "description": "Required to load remote content"
     }
