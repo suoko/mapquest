@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Privileged app</title>
+        <meta name="description" content="A privileged app stub">
+
+        <!--
+          viewport allows you to control how mobile browsers will render your content.
+          width=device-width tells mobile browsers to render your content across the
+          full width of the screen, without being zoomed out (by default it would render
+          it at a desktop width, then shrink it to fit.)
+          Read more about it here:
+          https://developer.mozilla.org/Mozilla/Mobile/Viewport_meta_tag
+        -->
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/app.css">
+
+        <!--
+        Inline JavaScript code is not allowed for privileged and certified apps,
+        due to Content Security Policy restrictions.
+        You can read more about it here: https://developer.mozilla.org/Apps/CSP
+        Plus keeping your JavaScript separated from your HTML is always a good practice!
+
+        We're also using the 'defer' attribute. This allows us to tell the browser that
+        it should not wait for this file to load before continuing to load the rest of
+        resources in the page. Then, once everything has been loaded, it will parse and
+        execute the deferred files.
+        Read about defer: https://developer.mozilla.org/Web/HTML/Element/script#attr-defer
+        -->
+        <script type="text/javascript" src="js/app.js" defer></script>
+
+        <!--
+        The following two lines are for loading the localisations library
+        and the localisation data-so people can use the app in their
+        own language (as long as you provide translations).
+        -->
+        <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
+        <script type="text/javascript" src="js/libs/l10n.js" defer></script>
+            <script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur20uy2g%2C2g%3Do5-9aya1w"></script>
+     <script type="text/javascript">
+
+      /*An example of using the MQA.EventUtil to hook into the window load event and execute defined function
+      passed in as the last parameter. You could alternatively create a plain function here and have it
+      executed whenever you like (e.g. <body onload="yourfunction">).*/
+
+      MQA.EventUtil.observe(window, 'load', function() {
+
+        /*Create an object for options*/
+        var options={
+          elt:document.getElementById('map'),        /*ID of element on the page where you want the map added*/
+          zoom:13,                                   /*initial zoom level of map*/
+          latLng:{lat:40.735383, lng:-73.984655},    /*center of map in latitude/longitude*/
+          mtype:'osm'                                /*map type (osm)*/
+        };
+
+        /*Construct an instance of MQA.TileMap with the options object*/
+        window.map = new MQA.TileMap(options);
+
+        MQA.withModule('directions', function() {
+
+          /*Uses the MQA.TileMap.addRoute function (added to the TileMap with the directions module)
+          passing in an array of location objects as the only parameter.*/
+          map.addRoute([
+            {latLng: {lat:40.735383, lng:-73.984655}},
+            {latLng: {lat:40.765416, lng:-73.985386}}
+          ]);
+        });
+      });
+
+    </script>
+    
+    </head>
+    <body>
+        <section>
+            <h1 data-l10n-id="app_title">Privileged app</h1>
+            <p data-l10n-id="app_description">This app demonstrates the usage of <code>XMLHttpRequest</code> and the <code>systemXHR</code> permission.</p>
+            <p id="error" hidden>...</p>
+            <form>
+              <!-- A placeholder attribute allows us to prefill the input box with some
+                text, so the user gets an idea of what sort of text they should enter
+                into that field. Once they start typing in something, the browser will
+                automatically remove the placeholder text. More info:
+                https://developer.mozilla.org/Web/HTML/Element/Input#attr-placeholder
+              -->
+              <input type="search" placeholder="javascript" id="term" /><button id="search" data-l10n-id="search">Search</button>
+            </form>
+        </section>
+        <section id="results" hidden></section>
+        <p><button onclick="geoFindMe()">Show my location</button></p>
+<div id="out"></div>
+      <div id='map' style='width:480px; height:280px;'></div>
+    </body>
+</html>
