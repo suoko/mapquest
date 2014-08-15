@@ -155,9 +155,7 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 
   
-  
-  
-
+ 
 
 // GEOLOCATION
 
@@ -168,31 +166,69 @@ geolocation.onclick = function () {
 navigator.geolocation.getCurrentPosition(function (position) {
 geolocationDisplay.innerHTML = "<strong>Latitude:</strong> " + position.coords.latitude + ", <strong>Longitude:</strong> " + position.coords.longitude;
 geolocationDisplay.style.display = "block";
-// aggiunti da me
+
+// GOOGLE IMG
    /*var img = new Image();
     img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
     geolocationDisplay.appendChild(img);*/
 // fine aggiunti da me
-    
-        var options={
-          elt:document.getElementById('map'),        /*ID of element on the page where you want the map added*/
-          zoom:13,                                   /*initial zoom level of map*/
-          latLng:{lat:43.0059, lng:12.6000},    /*center of map in latitude/longitude*/
+
+  
+/*
+//  MAPQUEST
+ var options={
+          elt:document.getElementById('map'),        
+          zoom:13,                                   
+          latLng:{lat:43.0059, lng:12.6000},   
           mtype:'osm'  
 	  };
 
-	window.map = new MQA.TileMap(options);
+	      window.map = new MQA.TileMap(options);
         MQA.withModule('directions', function() {
 
-          /*Uses the MQA.TileMap.addRoute function (added to the TileMap with the directions module)
-          passing in an array of location objects as the only parameter.*/
           map.addRoute([
             {latLng: {lat:position.coords.latitude, lng:position.coords.longitude}},
             {latLng: {lat:43.0059, lng:12.6000}}
           ]);
         });
 	
-	
+  
+*/
+//  SKOBBLER
+    var map = L.skobbler.map('map', {
+        apiKey: 'bc7b4da77e971c12cb0e069bffcf2771',
+
+        mapStyle: 'day',
+        bicycleLanes: true,
+        onewayArrows: true,
+        pois: 'all',
+        primaryLanguage: 'en',
+        fallbackLanguage: 'en',
+        mapLabels: 'localNaming',
+        retinaDisplay: 'auto',
+
+        zoomControl: true,
+        zoomControlPosition: 'top-left',
+
+        center: [position.coords.latitude, position.coords.longitude],
+        zoom: 12,
+        transport: 'pedestrian',
+				start:  [position.coords.latitude, position.coords.longitude],
+				nonReachable: 1,
+				range: 200,
+				units: 'Meter',
+				response_type: 'gps',
+      
+        startCoordinate: [position.coords.latitude, position.coords.longitude],
+        destinationCoordinate: [43.0059, 12.6000]
+      
+      
+    }); 
+	 var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+   marker.bindPopup("This is where you are. And this is the area where you can get in 5 minutes by walking.", { offset: new L.Point(-1, -41) }).openPopup();
+
+  
+  
 },
 function () {
 geolocationDisplay.innerHTML = "Failed to get your current location";
@@ -200,10 +236,10 @@ geolocationDisplay.style.display = "block";
 });
 };
 }
-  
-  
-// MAPQUEST MAP
-  
+
+                        
+
+
 
   
 });

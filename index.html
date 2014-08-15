@@ -15,6 +15,7 @@
         -->
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/leaflet.css" />
 
         <!--
         Inline JavaScript code is not allowed for privileged and certified apps,
@@ -29,6 +30,8 @@
         Read about defer: https://developer.mozilla.org/Web/HTML/Element/script#attr-defer
         -->
         <script type="text/javascript" src="js/app.js" defer></script>
+        <script type="text/javascript" src="js/leaflet.js"></script>
+        <script type="text/javascript" src="js/skobbler.js"></script>
 
         <!--
         The following two lines are for loading the localisations library
@@ -37,10 +40,9 @@
         -->
         <link rel="prefetch" type="application/l10n" href="data/locales.ini" />
         <script type="text/javascript" src="js/libs/l10n.js" defer></script>
-        <script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur20uy2g%2C2g%3Do5-9aya1w"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqO83W7MIBKmxX_u6FZKQkBsxDnrej1Zg"></script>
-
-    
+        <script src="http://open.mapquestapi.com/sdk/js/v7.1.0/mqa.toolkit.js?key=Fmjtd%7Cluur20uy2g%2C2g%3Do5-9aya1w"></script>
+        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqO83W7MIBKmxX_u6FZKQkBsxDnrej1Zg"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
     </head>
     <body>
         <section>
@@ -51,13 +53,15 @@
              <input type="search" placeholder="javascript" id="term" /><button id="search" data-l10n-id="search">Search</button>
             </form>
         </section>
-        <section id="results" hidden></section>
+        <!--<section id="results" hidden></section>-->
   <button id="geolocation" data-l10n-id="geolocation">Geolocation</button>
   <div id="geolocation-display" data-l10n-id="golocation-values">Geolocation coords should show up here</div>
         <div id='map' style='width:300px; height:300px;'></div>
-        <div id='map-canvas'></div>
+        <!--<iframe src="http://mapq.st/embed?q=1555+blake+st+denver" width="640" height="480"></iframe> --> 
+       
 
-        
+    
+
 
 
     </body>

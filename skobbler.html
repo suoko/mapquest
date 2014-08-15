@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+        #map {
+        height: 500px;
+    }
+    
+    </style>
+         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+        <script src="file:///home/gabriele/fxos/navi/js/skobbler.js"></script>   
+    
+
+    
+  </head>
+  <body>
+
+<!--<div id="map"></div>
+
+<script>
+    var map = L.skobbler.map('map', {
+        apiKey: '42d611d1fca715a3501a96249471c74f'
+    });
+</script> -->
+  
+  
+<div id="map_realreach" style="height: 300px;"></div>
+                        <script>
+                            var map = L.skobbler.map('map_realreach',{
+                                apiKey: 'bc7b4da77e971c12cb0e069bffcf2771',
+                                center: [52.51986, 13.40502],
+                                zoom: 15,
+                                transport: 'car',
+				start:  [52.51986, 13.40502],
+				nonReachable: 1,
+				range: 200,
+				units: 'Meter',
+				response_type: 'gps'
+                            });
+                            n = points.length;
+
+                            for (var i = 0; i < n; i += 2) {
+                                var lon = points[i],
+                                lat = points[i + 1],
+                                latlng = new L.LatLng(lat,lon);
+
+                                if(i>=8) routePoints.push(latlng);
+                            }
+
+              var marker = L.marker([52.51986, 13.40502]).addTo(map);
+marker.bindPopup("This is where you are. And this is the area where you can get in 5 minutes by walking.", { offset: new L.Point(-1, -41) }).openPopup();
+
+                           
+
+
+
+                            var polygon = L.polygon(routePoints,{
+                                weight: 2,
+                                fillColor: '#000'
+                            }).addTo(map);
+                        </script>
+
+<img src="http://bc7b4da77e971c12cb0e069bffcf2771.tor.skobbler.net/tor/RSngx/RealReach/json/13_1/ro/bc7b4da77e971c12cb0e069bffcf2771?start=44.4325,26.1039&transport=pedestrian&range=180&units=sec&toll=1&highways=1&nonReachable=0&response_type=gps">
+  
+  </body>
+</html>
